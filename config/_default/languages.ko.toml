@@ -1,12 +1,12 @@
 disabled = false
-locale = "en"
-label = "English"
+locale = "KO"
+label = "한국어"
 weight = 1
 title = "Blowfish"
 
 [params]
-  displayName = "EN"
-  isoCode = "en"
+  displayName = "KO"
+  isoCode = "KO"
   rtl = false
   dateFormat = "2 January 2006"
   # logo = "img/logo.png"
