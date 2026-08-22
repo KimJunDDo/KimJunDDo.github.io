@@ -1,0 +1,33 @@
+{{- $isJapanese := eq .Page.Language.Lang "ja" -}}
+{{- $projects := slice
+  (dict "kind" "phone" "number" "01" "prefix" "phone-1-" "label" "iPhone")
+  (dict "kind" "phone" "number" "02" "prefix" "phone-2-" "label" "iPhone")
+  (dict "kind" "laptop" "number" "01" "prefix" "macbook-1-" "label" "MacBook")
+  (dict "kind" "laptop" "number" "02" "prefix" "macbook-2-" "label" "MacBook")
+-}}
+
+<div class="project-showcase">
+  <section class="project-showcase__group" aria-labelledby="project-phone-heading">
+    <div class="project-showcase__heading">
+      <p>Mobile</p>
+      <h2 id="project-phone-heading">iPhone Mockups</h2>
+    </div>
+    <div class="project-showcase__grid project-showcase__grid--phones">
+      {{- range where $projects "kind" "phone" }}
+        {{- partial "project-device-gallery.html" (dict "page" $.Page "project" . "isJapanese" $isJapanese) -}}
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="project-showcase__group" aria-labelledby="project-laptop-heading">
+    <div class="project-showcase__heading">
+      <p>Desktop</p>
+      <h2 id="project-laptop-heading">MacBook Mockups</h2>
+    </div>
+    <div class="project-showcase__grid project-showcase__grid--laptops">
+      {{- range where $projects "kind" "laptop" }}
+        {{- partial "project-device-gallery.html" (dict "page" $.Page "project" . "isJapanese" $isJapanese) -}}
+      {{- end }}
+    </div>
+  </section>
+</div>

@@ -1,0 +1,13 @@
+{{ $linkTitle := . }}
+{{ $useSecondaryColor := false }}
+{{ if (reflect.IsMap . ) }}
+  {{ $linkTitle = .linkTitle }}
+  {{ $useSecondaryColor = cond (not .useSecondaryColor) false .useSecondaryColor }}
+{{ end }}
+
+<span class="flex cursor-pointer">
+  <span
+    class="rounded-md bg-neutral-100/90 px-2 py-1 text-xs font-medium shadow-sm shadow-neutral-900/10 dark:bg-neutral-700/70 dark:shadow-black/25 {{ if $useSecondaryColor }}text-secondary-700 dark:text-secondary-400{{ else }}text-primary-700 dark:text-primary-400{{ end }}">
+    {{ $linkTitle }}
+  </span>
+</span>

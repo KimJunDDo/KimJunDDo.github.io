@@ -1,0 +1,4 @@
+{{- with resources.Get "js/project-galleries.js" -}}
+  {{- $script := . | resources.Minify | resources.Fingerprint (site.Params.fingerprintAlgorithm | default "sha512") -}}
+  <script defer src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+{{- end -}}
