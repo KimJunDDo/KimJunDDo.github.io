@@ -4,6 +4,18 @@
 {{- $pattern := printf "%s*" $project.prefix -}}
 {{- $images := $page.Resources.Match $pattern -}}
 {{- $title := printf "%s Project %s" $project.label $project.number -}}
+{{- if eq $project.prefix "phone-1-" -}}
+  {{- $title = cond $isJapanese "旅行スケッチ" "료코 스케치" -}}
+{{- end -}}
+{{- if eq $project.prefix "phone-2-" -}}
+  {{- $title = cond $isJapanese "Janubit" "Janubit" -}}
+{{- end -}}
+{{- if eq $project.prefix "macbook-1-" -}}
+{{- $title = cond $isJapanese "MYゴミ" "마이고미" -}}
+{{- end -}}
+{{- if eq $project.prefix "macbook-2-" -}}
+{{- $title = cond $isJapanese "準備中..." "준비 중..." -}}
+{{- end -}}
 {{- $previousLabel := cond $isJapanese "前の画面" "이전 화면" -}}
 {{- $nextLabel := cond $isJapanese "次の画面" "다음 화면" -}}
 {{- $screenLabel := cond $isJapanese "クリックして次の画面を見る" "클릭해서 다음 화면 보기" -}}
@@ -11,7 +23,7 @@
 <article class="project-mockup project-mockup--{{ $project.kind }}" data-device-gallery tabindex="0" aria-label="{{ $title }}">
   <h3>{{ $title }}</h3>
 
-  <div class="project-device project-device--{{ $project.kind }}">
+  <div class="project-device project-device--{{ $project.kind }} project-device--{{ $project.kind }}-{{ $project.number }}">
     <div class="project-device__screen" data-gallery-screen role="button" tabindex="0" aria-label="{{ $screenLabel }}">
       {{- if $images }}
         {{- range $index, $image := $images }}
