@@ -1,0 +1,8 @@
+<a
+  class="not-prose inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-sm font-medium text-neutral-700 shadow-md shadow-neutral-900/10 backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-primary-600 hover:shadow-lg dark:bg-neutral-700/65 dark:text-neutral-200 dark:shadow-black/25 dark:hover:text-primary-400"
+  href="{{ .Page.RelPermalink }}">
+  {{ .Page.Title }}
+  {{ if site.Params.taxonomy.showTermCount | default true }}
+    <span class="text-xs text-neutral-500 dark:text-neutral-400">{{ .Count }}</span>
+  {{ end }}
+</a>

@@ -1,0 +1,46 @@
+{{- $page := .page -}}
+{{- $project := .project -}}
+{{- $isJapanese := .isJapanese -}}
+{{- $pattern := printf "%s*" $project.prefix -}}
+{{- $images := $page.Resources.Match $pattern -}}
+{{- $title := printf "%s Project %s" $project.label $project.number -}}
+{{- $previousLabel := cond $isJapanese "前の画面" "이전 화면" -}}
+{{- $nextLabel := cond $isJapanese "次の画面" "다음 화면" -}}
+{{- $screenLabel := cond $isJapanese "クリックして次の画面を見る" "클릭해서 다음 화면 보기" -}}
+
+<article class="project-mockup project-mockup--{{ $project.kind }}" data-device-gallery tabindex="0" aria-label="{{ $title }}">
+  <h3>{{ $title }}</h3>
+
+  <div class="project-device project-device--{{ $project.kind }}">
+    <div class="project-device__screen" data-gallery-screen role="button" tabindex="0" aria-label="{{ $screenLabel }}">
+      {{- if $images }}
+        {{- range $index, $image := $images }}
+          {{- $processed := $image -}}
+          {{- if eq $project.kind "phone" -}}
+            {{- $processed = $image.Resize "720x webp q88" -}}
+          {{- else -}}
+            {{- $processed = $image.Resize "1440x webp q88" -}}
+          {{- end }}
+          <figure class="project-device__slide{{ if eq $index 0 }} is-active{{ end }}" data-gallery-slide aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}">
+            <img src="{{ $processed.RelPermalink }}" width="{{ $processed.Width }}" height="{{ $processed.Height }}" alt="{{ $title }} UI {{ add $index 1 }}" loading="lazy" decoding="async">
+          </figure>
+        {{- end }}
+      {{- else }}
+        <div class="project-device__slide project-device__placeholder is-active" data-gallery-slide aria-hidden="false">
+          <span aria-hidden="true">{{ if eq $project.kind "phone" }}▯{{ else }}▰{{ end }}</span>
+          <strong>UI Screenshot {{ $project.number }}</strong>
+          <small>{{ cond $isJapanese "スクリーンショットを追加すると、ここに表示されます。" "스크린샷을 추가하면 여기에 표시됩니다." }}</small>
+        </div>
+      {{- end }}
+    </div>
+    {{- if eq $project.kind "laptop" }}
+      <div class="project-device__base" aria-hidden="true"><span></span></div>
+    {{- end }}
+  </div>
+
+  <div class="project-mockup__controls">
+    <button type="button" data-gallery-previous aria-label="{{ $previousLabel }}">←</button>
+    <div class="project-mockup__dots" data-gallery-dots aria-hidden="true"></div>
+    <button type="button" data-gallery-next aria-label="{{ $nextLabel }}">→</button>
+  </div>
+</article>

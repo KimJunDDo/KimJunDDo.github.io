@@ -2,13 +2,13 @@ disabled = false
 locale = "KO"
 label = "한국어"
 weight = 1
-title = "Blowfish"
+title = "KimJunDDo's Blog"
 
 [params]
   displayName = "KO"
   isoCode = "KO"
   rtl = false
-  dateFormat = "2 January 2006"
+  dateFormat = "2006년 1월 2일"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"

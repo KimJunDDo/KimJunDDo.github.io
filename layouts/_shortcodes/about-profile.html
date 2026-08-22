@@ -1,0 +1,80 @@
+{{ $isJapanese := eq .Page.Language.Lang "ja" }}
+{{ $profileImage := .Page.Resources.GetMatch "profile.*" }}
+{{ $skills := slice
+  (dict "name" "Java" "icon" "icons/skills/java.svg")
+  (dict "name" "Spring" "icon" "icons/skills/spring.svg")
+  (dict "name" "JavaScript" "icon" "icons/skills/javascript.svg")
+  (dict "name" "React Native" "icon" "icons/skills/react.svg")
+  (dict "name" "Python" "icon" "icons/skills/python.svg")
+  (dict "name" "pandas" "icon" "icons/skills/pandas.svg")
+  (dict "name" "scikit-learn" "icon" "icons/skills/scikitlearn.svg")
+  (dict "name" "MariaDB" "icon" "icons/skills/mariadb.svg")
+  (dict "name" "MySQL" "icon" "icons/skills/mysql.svg")
+  (dict "name" "PostgreSQL" "icon" "icons/skills/postgresql.svg")
+  (dict "name" "C" "icon" "icons/skills/c.svg")
+  (dict "name" "C++" "icon" "icons/skills/cplusplus.svg")
+}}
+
+<section class="about-profile not-prose" aria-labelledby="profile-name">
+  <div class="about-profile__identity">
+    <div class="about-profile__photo-wrap">
+      {{ with $profileImage }}
+        {{ $photo := .Fit "480x600 webp q88" }}
+        <img
+          class="about-profile__photo"
+          src="{{ $photo.RelPermalink }}"
+          width="{{ $photo.Width }}"
+          height="{{ $photo.Height }}"
+          alt="{{ if $isJapanese }}キム・ジュンソクのプロフィール写真{{ else }}김준석 프로필 사진{{ end }}"
+          loading="eager">
+      {{ else }}
+        <div class="about-profile__photo-placeholder" aria-label="{{ if $isJapanese }}プロフィール写真{{ else }}프로필 사진{{ end }}">
+          K
+        </div>
+      {{ end }}
+    </div>
+
+    <div class="about-profile__details">
+      <p class="about-profile__eyebrow">PROFILE</p>
+      <h2 id="profile-name">{{ if $isJapanese }}キム・ジュンソク{{ else }}김준석{{ end }}</h2>
+      <dl class="about-profile__facts">
+        <div>
+          <dt>{{ if $isJapanese }}専攻{{ else }}학과{{ end }}</dt>
+          <dd class="about-profile__majors">
+            {{ if $isJapanese }}
+              <span>ソフトウェア学科</span>
+              <span class="about-profile__major-separator" aria-hidden="true">·</span>
+              <span>データサイエンス学科（複数専攻）</span>
+            {{ else }}
+              <span>소프트웨어학과</span>
+              <span class="about-profile__major-separator" aria-hidden="true">·</span>
+              <span>데이터 사이언스학과 (복수전공)</span>
+            {{ end }}
+          </dd>
+        </div>
+        <div>
+          <dt>{{ if $isJapanese }}生年{{ else }}출생연도{{ end }}</dt>
+          <dd>{{ if $isJapanese }}2001年（25歳）{{ else }}2001년 (26세){{ end }}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="about-profile__skills">
+    <div class="about-profile__section-heading">
+      <span>{{ partial "icon.html" "code" }}</span>
+      <h3>{{ if $isJapanese }}スキル{{ else }}기술 스택{{ end }}</h3>
+    </div>
+    <ul class="about-profile__skill-grid" role="list">
+      {{ range $skills }}
+        {{ $icon := resources.Get .icon }}
+        <li class="about-profile__skill">
+          {{ with $icon }}
+            <span class="about-profile__skill-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+          {{ end }}
+          <span>{{ .name }}</span>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>

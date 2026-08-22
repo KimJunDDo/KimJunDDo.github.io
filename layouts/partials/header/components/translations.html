@@ -1,0 +1,17 @@
+{{ if .IsTranslated }}
+  {{ range .Translations }}
+    <a
+      href="{{ .RelPermalink }}"
+      hreflang="{{ .Language.Lang }}"
+      class="translation flex items-center bf-icon-color-hover"
+      aria-label="{{ .Language.Params.displayName }}"
+      title="{{ .Language.Params.displayName }}">
+      <span class="me-1">
+        {{ partial "icon.html" "language" }}
+      </span>
+      <span class="text-sm font-medium">
+        {{- .Language.Params.displayName | emojify -}}
+      </span>
+    </a>
+  {{ end }}
+{{ end }}
