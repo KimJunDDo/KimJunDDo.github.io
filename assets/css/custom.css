@@ -1,6 +1,118 @@
-/* Keep the home page's "show more" action text-only. */
-#main-content > section > .mt-10 > a > button {
-  border-width: 0;
+/* Keep the home page's article action visible without a blue outline. */
+.home-show-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.home-show-more {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.7rem 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral));
+  color: rgb(var(--color-neutral-700));
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow:
+    0 10px 24px rgb(74 61 35 / 0.13),
+    0 2px 8px rgb(74 61 35 / 0.06);
+  transition: color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.home-show-more:hover,
+.home-show-more:focus-visible {
+  color: rgb(var(--color-primary-600));
+  box-shadow:
+    0 14px 30px rgb(74 61 35 / 0.18),
+    0 3px 9px rgb(74 61 35 / 0.08);
+  transform: translateY(-2px);
+}
+
+.dark .home-show-more {
+  background: rgb(var(--color-neutral-700) / 0.72);
+  color: rgb(var(--color-neutral-100));
+  box-shadow:
+    0 12px 28px rgb(0 0 0 / 0.3),
+    0 3px 9px rgb(0 0 0 / 0.16);
+}
+
+.dark .home-show-more:hover,
+.dark .home-show-more:focus-visible {
+  color: rgb(var(--color-primary-400));
+  box-shadow:
+    0 16px 34px rgb(0 0 0 / 0.38),
+    0 4px 11px rgb(0 0 0 / 0.2);
+}
+
+/* Article building blocks: code panels, conclusion callouts, and active TOC items. */
+.article-content .highlight {
+  overflow: hidden;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow:
+    0 16px 38px rgb(30 41 59 / 0.12),
+    0 3px 10px rgb(30 41 59 / 0.06);
+}
+
+.article-content .highlight pre {
+  margin: 0;
+  border-radius: inherit;
+}
+
+/* Chroma can classify valid Korean/Japanese JSX text as an error token. */
+.article-content .chroma .err {
+  background-color: transparent;
+  color: inherit;
+}
+
+.dark .article-content .highlight {
+  box-shadow:
+    0 18px 42px rgb(0 0 0 / 0.34),
+    0 4px 12px rgb(0 0 0 / 0.18);
+}
+
+.conclusion-callout {
+  margin-block: 2.25rem;
+  padding: 0.35rem 0 0.35rem 1.35rem;
+  border: 0;
+  border-left: 0.3rem solid #3b82f6;
+  color: rgb(var(--color-neutral-700));
+  font-weight: 650;
+}
+
+.conclusion-callout > :first-child {
+  margin-top: 0;
+}
+
+.conclusion-callout > :last-child {
+  margin-bottom: 0;
+}
+
+.dark .conclusion-callout {
+  border-left-color: #60a5fa;
+  color: rgb(var(--color-neutral-100));
+}
+
+.toc-right #TableOfContents a.active {
+  display: block;
+  margin-inline-start: -1rem;
+  padding: 0.32rem 0.7rem 0.32rem 0.85rem;
+  border-left: 0.2rem solid #3b82f6;
+  border-radius: 0 0.65rem 0.65rem 0;
+  background: rgb(59 130 246 / 0.13);
+  color: #2563eb;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.dark .toc-right #TableOfContents a.active {
+  border-left-color: #60a5fa;
+  background: rgb(96 165 250 / 0.14);
+  color: #93c5fd;
 }
 
 /* A warm espresso palette for dark mode. */
