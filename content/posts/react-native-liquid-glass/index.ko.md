@@ -1,6 +1,6 @@
 ---
 title: "React Native에서 Liquid Glass 적용하기"
-date: 2026-08-23
+date: 2026-08-22
 draft: false
 description: "iOS 26의 Liquid Glass를 React Native와 Expo에서 적용하는 방법과 호환성, 접근성, 성능 주의사항을 정리합니다."
 tags: ["React Native", "Expo", "iOS 26", "Liquid Glass"]
