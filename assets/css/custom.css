@@ -222,8 +222,26 @@ html.dark {
 
 /* The About page needs more room than the theme's reading-width article column. */
 .article-content:has(.about-profile) {
-  width: min(72rem, calc(100vw - 3rem));
+  width: calc(100vw - 3rem);
   max-width: none;
+}
+
+@media (min-width: 640px) {
+  .article-content:has(.about-profile) {
+    width: calc(100vw - 7rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .article-content:has(.about-profile) {
+    width: calc(100vw - 12rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-content:has(.about-profile) {
+    width: min(64rem, calc(100vw - 16rem));
+  }
 }
 
 .dark .about-profile {
@@ -433,11 +451,13 @@ html.dark {
   height: 100%;
 }
 
-@media (max-width: 760px) {
-  .article-content:has(.about-profile) {
-    width: calc(100vw - 2rem);
+@media (max-width: 900px) {
+  .about-profile__skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+@media (max-width: 760px) {
   .about-profile__identity {
     grid-template-columns: 1fr;
   }
@@ -447,9 +467,6 @@ html.dark {
     margin-inline: auto;
   }
 
-  .about-profile__skill-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 420px) {
